@@ -1,0 +1,27 @@
+{
+  "name": "LinkedAndSaved",
+  "description": "Save automatically the job offers that you applied",
+  "version": "1.0.0",
+  "author": "cecicifu",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["https://*.linkedin.com/*"],
+  "permissions": ["storage", "scripting", "webNavigation", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/link_and_saved_16.png",
+      "32": "/images/link_and_saved_32.png",
+      "48": "/images/link_and_saved_48.png",
+      "128": "/images/link_and_saved_128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/link_and_saved_16.png",
+    "32": "/images/link_and_saved_32.png",
+    "48": "/images/link_and_saved_48.png",
+    "128": "/images/link_and_saved_128.png"
+  }
+}
