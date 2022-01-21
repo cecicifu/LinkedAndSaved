@@ -8,13 +8,7 @@
     "service_worker": "background.js"
   },
   "host_permissions": ["https://*.linkedin.com/*"],
-  "permissions": [
-    "storage",
-    "scripting",
-    "webNavigation",
-    "nativeMessaging",
-    "tabs"
-  ],
+  "permissions": ["storage", "scripting", "nativeMessaging", "tabs"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
