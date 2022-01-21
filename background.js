@@ -1,22 +1,31 @@
-const filter = {
-  url: [
-    {
-      urlMatches: "https://www.linkedin.com",
-    },
-  ],
-}
+const URLS = [
+  "https://www.linkedin.com/jobs/collections/recommended/",
+  "https://www.linkedin.com/jobs/view/",
+]
 
-chrome.webNavigation.onCompleted.addListener((tab) => {
-  init(tab, "onComplete")
-}, filter)
-chrome.webNavigation.onHistoryStateUpdated.addListener((tab) => {
-  init(tab, "onHistoryStateUpdated")
-}, filter)
+chrome.runtime.onMessage.addListener((message, sender) => {
+  console.log(message, sender)
+  // Guardamos la informacion de la oferta aplicada en el storage API
+})
 
-const init = (tab, state) => {
-  console.log(state)
-  chrome.scripting.executeScript({
-    target: { tabId: tab.tabId },
-    files: ["script.js"],
-  })
-}
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (
+    changeInfo.status == "complete" &&
+    URLS.some((url) => tab.url.includes(url))
+  ) {
+    if (this.timeout != null) {
+      clearTimeout(this.timeout)
+    }
+
+    this.timeout = setTimeout(
+      function () {
+        chrome.scripting.executeScript({
+          target: { tabId: tabId },
+          files: ["content-script.js"],
+        })
+        this.timeout = null
+      }.bind(this),
+      1000
+    )
+  }
+})
