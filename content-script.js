@@ -1,6 +1,6 @@
 document
   .querySelector(".jobs-apply-button")
-  .addEventListener("click", function (event) {
+  .addEventListener("click", (event) => {
     const CONTAINER = event.target.closest(".jobs-details")
 
     if (window.location.pathname.includes("/jobs/view/")) {

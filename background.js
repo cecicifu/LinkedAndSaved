@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((job) => {
   })
 })
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
     changeInfo.status === "complete" &&
     CONTEXT.some((url) => tab.url.includes(url))

@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener(() => {
   updateJobs()
 })
 
-function updateJobs() {
+const updateJobs = () => {
   jobList.innerHTML = ``
   chrome.storage.local.get("jobs", (result) => {
     if (result?.jobs !== undefined) {
@@ -30,13 +30,13 @@ function updateJobs() {
 }
 updateJobs()
 
-refreshList.addEventListener("click", function () {
+refreshList.addEventListener("click", () => {
   updateJobs()
 })
 
-clearList.addEventListener("click", function () {
-  chrome.storage.local.clear(function () {
-    var error = chrome.runtime.lastError
+clearList.addEventListener("click", () => {
+  chrome.storage.local.clear(() => {
+    const error = chrome.runtime.lastError
     if (error) {
       console.error(error)
     }
