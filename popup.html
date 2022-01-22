@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h1>Este es el popup</h1>
+    <header>
+      <h1>LinkedAndSaved</h1>
+      <h2>Save automatically the job offers that you applied</h2>
+      <div>
+        <button id="refresh-list">Refresh</button>
+        <button id="clear-list">Clear</button>
+      </div>
+    </header>
+    <main>
+      <ul id="job-list"></ul>
+      <div class="info">Capturing job offers..</div>
+    </main>
     <script src="popup.js"></script>
   </body>
 </html>

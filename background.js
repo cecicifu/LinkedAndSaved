@@ -1,19 +1,20 @@
-const URLS = [
-  "https://www.linkedin.com/jobs/collections/recommended/",
-  "https://www.linkedin.com/jobs/view/",
-]
+const CONTEXT = ["/jobs/collections/", "/jobs/view/"]
 
-chrome.runtime.onMessage.addListener((message, sender) => {
-  console.log(message, sender)
-  // Guardamos la informacion de la oferta aplicada en el storage API
+chrome.runtime.onMessage.addListener((job) => {
+  chrome.storage.local.get({ jobs: [] }, async function (result) {
+    await result.jobs.push(job)
+    await chrome.storage.local.set({ jobs: result.jobs })
+
+    console.log(result)
+  })
 })
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (
-    changeInfo.status == "complete" &&
-    URLS.some((url) => tab.url.includes(url))
+    changeInfo.status === "complete" &&
+    CONTEXT.some((url) => tab.url.includes(url))
   ) {
-    if (this.timeout != null) {
+    if (this.timeout !== null) {
       clearTimeout(this.timeout)
     }
 
