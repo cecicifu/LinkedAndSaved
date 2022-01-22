@@ -1,12 +1,9 @@
-console.log("LinkedAndSaved Enabled!")
-
 document
   .querySelector(".jobs-apply-button")
   .addEventListener("click", function (event) {
     const CONTAINER = event.target.closest(".jobs-details")
 
     if (window.location.pathname.includes("/jobs/view/")) {
-      console.log(event)
       return chrome.runtime.sendMessage(simpleView(CONTAINER))
     }
 

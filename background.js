@@ -4,8 +4,6 @@ chrome.runtime.onMessage.addListener((job) => {
   chrome.storage.local.get({ jobs: [] }, async function (result) {
     await result.jobs.push(job)
     await chrome.storage.local.set({ jobs: result.jobs })
-
-    console.log(result)
   })
 })
 
