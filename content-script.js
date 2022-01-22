@@ -1,12 +1,12 @@
 document
   .querySelector(".jobs-apply-button")
   .addEventListener("click", (event) => {
-    const CONTAINER = event.target.closest(".jobs-details")
+    if (chrome.runtime.id === undefined) return
 
+    const CONTAINER = event.target.closest(".jobs-details")
     if (window.location.pathname.includes("/jobs/view/")) {
       return chrome.runtime.sendMessage(simpleView(CONTAINER))
     }
-
     return chrome.runtime.sendMessage(collectionView(CONTAINER))
   })
 
